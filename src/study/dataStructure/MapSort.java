@@ -1,7 +1,4 @@
-package study;
-
-import java.util.ArrayList;
-import java.util.List;
+package study.dataStructure;
 
 public class MapSort {
     public static void main(String[] args) {
