@@ -1,28 +1,33 @@
+package baekjoon.bronze.bronze5;
+
 import java.io.*;
 import java.util.*;
 
-public class test {
+// Bronze V _ 10871 _ X보다 작은 수
+
+public class Main_10871 {
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int x = Integer.parseInt(st.nextToken());
-        int[] a = new int[n];
-        for (int i=0; i<n; i++) {
-            a[i] = Integer.parseInt(st.nextToken());
-        }
+        StringBuilder sb = new StringBuilder();
 
-        for (int number : a) {
-            if (number < x) {
-                sb.append(number).append(" ");
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            int num = Integer.parseInt(st.nextToken());
+            if (num < x) {
+                sb.append(num).append(" ");
             }
         }
 
         bw.write(sb.toString());
         bw.flush();
+
     }
 
 }
