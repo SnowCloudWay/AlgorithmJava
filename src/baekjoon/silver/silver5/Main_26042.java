@@ -10,40 +10,64 @@ public class Main_26042 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
-        Deque<Integer> dequeInt = new ArrayDeque<>();
 
         int n = Integer.parseInt(br.readLine());
-        int waitMax = 0;
-        int lastStudent = n + 1;
+        int maxCnt = 0, cnt = 0, minNum = n;
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             if (st.nextToken().equals("1")) {
-                dequeInt.offer(Integer.parseInt(st.nextToken()));
-
-                int waitNow = dequeInt.size();
-                if (waitNow >= waitMax) {
-                    int last = dequeInt.peekLast();
-                    if (waitNow == waitMax) {
-                        if (last < lastStudent) {
-                            lastStudent = last;
-                        }
-                    } else {
-                        waitMax = waitNow;
-                        lastStudent = last;
-                    }
+                ++cnt;
+                if (maxCnt <= cnt) {
+                    int num = Integer.parseInt(st.nextToken());
+                    if (maxCnt < cnt) maxCnt = cnt;
+                    if (minNum > num) minNum = num;
                 }
-            } else {
-                dequeInt.pollFirst();
-            }
+            } else cnt--;
         }
 
-        sb.append(waitMax).append(" ").append(lastStudent);
-        bw.write(sb.toString());
-        bw.flush();
+        sb.append(maxCnt).append(" ").append(minNum);
+        System.out.println(sb);
 
+//    public static void main(String[] args) throws IOException {
+//
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//        StringBuilder sb = new StringBuilder();
+//        StringTokenizer st;
+//        Deque<Integer> dequeInt = new ArrayDeque<>();
+//
+//        int n = Integer.parseInt(br.readLine());
+//        int waitMax = 0;
+//        int lastStudent = n + 1;
+//
+//        for (int i = 0; i < n; i++) {
+//            st = new StringTokenizer(br.readLine());
+//            if (st.nextToken().equals("1")) {
+//                dequeInt.offer(Integer.parseInt(st.nextToken()));
+//
+//                int waitNow = dequeInt.size();
+//                if (waitNow >= waitMax) {
+//                    int last = dequeInt.peekLast();
+//                    if (waitNow == waitMax) {
+//                        if (last < lastStudent) {
+//                            lastStudent = last;
+//                        }
+//                    } else {
+//                        waitMax = waitNow;
+//                        lastStudent = last;
+//                    }
+//                }
+//            } else {
+//                dequeInt.pollFirst();
+//            }
+//        }
+//
+//        sb.append(waitMax).append(" ").append(lastStudent);
+//        bw.write(sb.toString());
+//        bw.flush();
+//
     }
 }
