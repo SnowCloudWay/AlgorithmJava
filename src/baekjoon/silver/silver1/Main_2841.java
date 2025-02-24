@@ -10,12 +10,14 @@ public class Main_2841 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        ArrayList<ArrayList<Integer>> arr = new ArrayList<>();
+        Stack<Stack<Integer>> sInt = new Stack<>();
         for (int i = 0; i < 6; i++)
-            arr.add(new ArrayList<>());
+            sInt.add(new Stack<>());
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        int cnt = 0;
+        st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int p = Integer.parseInt(st.nextToken());
 
@@ -23,10 +25,24 @@ public class Main_2841 {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            a -= 1;
-
+            --a;
+            if (sInt.get(a).isEmpty() || sInt.get(a).peek() < b) {
+                sInt.get(a).push(b);
+                cnt++;
+            } else if (sInt.get(a).peek() > b) {
+                while (true) {
+                    if (sInt.get(a).isEmpty() || sInt.get(a).peek() <= b)
+                        break;
+                    sInt.get(a).pop();
+                    cnt++;
+                }
+                if (sInt.get(a).isEmpty() || sInt.get(a).peek() < b) {
+                    sInt.get(a).push(b);
+                    cnt++;
+                }
+            }
         }
-
+        System.out.println(cnt);
     }
 
 }
